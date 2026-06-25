@@ -1,0 +1,10 @@
+{
+  "name": "NutriLog AI",
+  "description": "Daily food nutrition analyzer and fitness logger from Innovance TechLabs, analyzing proteins, cellular ions, active minerals, and athletic alternatives from custom photos or typed products.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

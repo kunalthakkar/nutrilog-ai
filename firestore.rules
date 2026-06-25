@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Help helper function to validate valid ID format
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 100;
+    }
+
+    // Helper to validate a LogEntry structure
+    function isValidLogEntry(data) {
+      return data.keys().hasAll(['id', 'userMobile', 'productName', 'timestamp', 'dateStr', 'calories', 'protein', 'carbs', 'fat'])
+        && data.id is string
+        && data.userMobile is string
+        && data.userMobile.size() == 10
+        && data.productName is string
+        && data.timestamp is number
+        && data.dateStr is string
+        && data.calories is number
+        && data.protein is number
+        && data.carbs is number
+        && data.fat is number;
+    }
+
+    match /fitness_logs/{logId} {
+      // Since mock login doesn't use Firebase Auth, we authorize operations with proper data validation.
+      // Firestore queries will filter logs by userMobile (e.g. where("userMobile", "==", mobile))
+      allow read: if true;
+      
+      allow create: if isValidId(logId) 
+        && request.resource.data.id == logId
+        && isValidLogEntry(request.resource.data);
+        
+      allow update: if isValidId(logId)
+        && request.resource.data.id == logId
+        && isValidLogEntry(request.resource.data);
+        
+      allow delete: if isValidId(logId);
+    }
+  }
+}

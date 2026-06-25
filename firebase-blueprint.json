@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "LogEntry": {
+      "title": "LogEntry",
+      "description": "A single logged food item consumption record with nutritional values",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the log entry"
+        },
+        "userMobile": {
+          "type": "string",
+          "description": "10-digit mobile number of the user who logged this food item"
+        },
+        "productName": {
+          "type": "string",
+          "description": "Name of the logged food product"
+        },
+        "timestamp": {
+          "type": "number",
+          "description": "Epoch timestamp in milliseconds when the food was logged"
+        },
+        "dateStr": {
+          "type": "string",
+          "description": "Date of consumption in YYYY-MM-DD format"
+        },
+        "calories": {
+          "type": "number",
+          "description": "Calories of the logged portion in kcal"
+        },
+        "protein": {
+          "type": "number",
+          "description": "Protein content in grams"
+        },
+        "carbs": {
+          "type": "number",
+          "description": "Carbohydrates content in grams"
+        },
+        "fat": {
+          "type": "number",
+          "description": "Fat content in grams"
+        },
+        "sodium": {
+          "type": "number",
+          "description": "Sodium content in milligrams"
+        },
+        "potassium": {
+          "type": "number",
+          "description": "Potassium content in milligrams"
+        },
+        "calcium": {
+          "type": "number",
+          "description": "Calcium content in milligrams"
+        },
+        "iron": {
+          "type": "number",
+          "description": "Iron content in milligrams"
+        },
+        "magnesium": {
+          "type": "number",
+          "description": "Magnesium content in milligrams"
+        },
+        "zinc": {
+          "type": "number",
+          "description": "Zinc content in milligrams"
+        },
+        "fiber": {
+          "type": "number",
+          "description": "Fiber content in grams"
+        },
+        "quantityGrams": {
+          "type": "number",
+          "description": "Quantity in grams actually logged"
+        }
+      },
+      "required": [
+        "id",
+        "userMobile",
+        "productName",
+        "timestamp",
+        "dateStr",
+        "calories",
+        "protein",
+        "carbs",
+        "fat"
+      ]
+    }
+  },
+  "firestore": {
+    "fitness_logs/{logId}": {
+      "schema": "LogEntry",
+      "description": "Fitness history and food nutrition log entries keyed by unique log entry ID"
+    }
+  }
+}
